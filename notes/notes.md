@@ -78,6 +78,7 @@ DELETE FROM synpuf5.PAYER_PLAN_PERIOD;
 ```
 
 ## setup sources
+### Change only the CDM domain (cdm schema on cedar has vocabulary.)
 
 ```
 -- remove any previously added database connection configuration data
@@ -90,16 +91,17 @@ VALUES (1, 'OHDSI CDM V5 Database', 'OHDSI-CDMV5',
   'jdbc:postgresql://192.168.0.251:5432/beapen_db?user=beapen', 'postgresql');
 
 -- CDM daimon
-INSERT INTO ohdsi.source_daimon( source_daimon_id, source_id, daimon_type, table_qualifier, priority) VALUES (1, 1, 0, '', 2);
+INSERT INTO ohdsi.source_daimon( source_daimon_id, source_id, daimon_type, table_qualifier, priority) VALUES (1, 1, 0, 'synpuf5', 2);
 
 -- VOCABULARY daimon
-INSERT INTO ohdsi.source_daimon( source_daimon_id, source_id, daimon_type, table_qualifier, priority) VALUES (2, 1, 1, '', 2);
+INSERT INTO ohdsi.source_daimon( source_daimon_id, source_id, daimon_type, table_qualifier, priority) VALUES (2, 1, 1, 'cdm', 2);
 
 -- RESULTS daimon
 INSERT INTO ohdsi.source_daimon( source_daimon_id, source_id, daimon_type, table_qualifier, priority) VALUES (3, 1, 2, 'ohdsi', 2);
 
 -- EVIDENCE daimon
 INSERT INTO ohdsi.source_daimon( source_daimon_id, source_id, daimon_type, table_qualifier, priority) VALUES (4, 1, 3, 'ohdsi', 2);
+
 
 ```
 
@@ -110,6 +112,24 @@ INSERT INTO ohdsi.source_daimon( source_daimon_id, source_id, daimon_type, table
 
 create table synpuf5.vocabulary (like cdm.vocabulary including all);
 insert into synpuf5.vocabulary select * from cdm.vocabulary;
+
+create table synpuf5.domain (like cdm.domain including all);
+insert into synpuf5.domain select * from cdm.domain;
+
+create table synpuf5.concept (like cdm.concept including all);
+insert into synpuf5.concept select * from cdm.concept;
+
+create table synpuf5.concept_ancestor (like cdm.concept_ancestor including all);
+insert into synpuf5.concept_ancestor select * from cdm.concept_ancestor;
+
+create table synpuf5.concept_class (like cdm.concept_class including all);
+insert into synpuf5.concept_class select * from cdm.concept_class;
+
+create table synpuf5.concept_relationship (like cdm.concept_relationship including all);
+insert into synpuf5.concept_relationship select * from cdm.concept_relationship;
+
+create table synpuf5.concept_synonym (like cdm.concept_synonym including all);
+insert into synpuf5.concept_synonym select * from cdm.concept_synonym;
 
 ```
 
