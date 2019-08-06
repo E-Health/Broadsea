@@ -2,35 +2,38 @@ version: '2'
 
 services:
 
-  broadsea-methods-library:
-    image: ohdsi/broadsea-methodslibrary
-    ports:
-      - "8787:8787"
-      - "6311:6311"
+  # broadsea-methods-library:
+  #   image: ohdsi/broadsea-methodslibrary
+  #   ports:
+  #     - "8787:8787"
+  #     - "6311:6311"
 
   broadsea-webtools:
     image: ohdsi/broadsea-webtools
     ports:
       - "8080:8080"
     volumes:
-     - .:/tmp/drivers/:ro
-     - ./config-local.js:/usr/local/tomcat/webapps/atlas/js/config-local.js:ro
+     #- .:/tmp/drivers/:ro
+     - ./config-local.js:/usr/local/tomcat/webapps/atlas/js/config-local.js
     environment:
-      - WEBAPI_URL=http://192.168.99.100:8080
+      - WEBAPI_URL=http://tomcat.nuchange.ca
       - env=webapi-postgresql
       - datasource_driverClassName=org.postgresql.Driver
-      - datasource_url=jdbc:postgresql://192.168.99.100:5432/secret-database-name
-      - datasource.cdm.schema=cdm
+      - datasource_url=jdbc:postgresql://192.168.0.251:5432/beapen_db
+      # SET search_path TO synpuf5,cdm,ohdsi,public; 
+      # But schema prefix is needed for now
+      # Copy tables for now
+      - datasource.cdm.schema=synpuf5
       - datasource.ohdsi.schema=ohdsi
-      - datasource_username=secret-user-name
-      - datasource_password=secret-user-password
+      - datasource_username=beapen
+      #- datasource_password=
       - spring.jpa.properties.hibernate.default_schema=ohdsi
       - spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.PostgreSQLDialect
       - spring.batch.repository.tableprefix=ohdsi.BATCH_
       - flyway_datasource_driverClassName=org.postgresql.Driver
-      - flyway_datasource_url=jdbc:postgresql://192.168.99.100:5432/secret-database-name
+      - flyway_datasource_url=jdbc:postgresql://192.168.0.251:5432/beapen_db
       - flyway_schemas=ohdsi
       - flyway.placeholders.ohdsiSchema=ohdsi
-      - flyway_datasource_username=secret-user-name
-      - flyway_datasource_password=secret-user-password
+      - flyway_datasource_username=beapen
+      #- flyway_datasource_password=secret-user-password
       - flyway.locations=classpath:db/migration/postgresql
