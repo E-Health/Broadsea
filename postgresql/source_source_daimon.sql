@@ -14,7 +14,7 @@ INSERT INTO ohdsi.source_daimon( source_daimon_id, source_id, daimon_type, table
 INSERT INTO ohdsi.source_daimon( source_daimon_id, source_id, daimon_type, table_qualifier, priority) VALUES (2, 1, 1, 'vocabulary', 2);
 
 -- RESULTS daimon
-INSERT INTO ohdsi.source_daimon( source_daimon_id, source_id, daimon_type, table_qualifier, priority) VALUES (3, 1, 2, 'results', 2);
+INSERT INTO ohdsi.source_daimon( source_daimon_id, source_id, daimon_type, table_qualifier, priority) VALUES (3, 1, 2, 'synpuf_results', 2);
 
 -- EVIDENCE daimon
 INSERT INTO ohdsi.source_daimon( source_daimon_id, source_id, daimon_type, table_qualifier, priority) VALUES (4, 1, 3, 'temp', 2);
@@ -33,7 +33,7 @@ INSERT INTO ohdsi.source_daimon( source_daimon_id, source_id, daimon_type, table
 INSERT INTO ohdsi.source_daimon( source_daimon_id, source_id, daimon_type, table_qualifier, priority) VALUES (6, 2, 1, 'vocabulary', 2);
 
 -- RESULTS daimon
-INSERT INTO ohdsi.source_daimon( source_daimon_id, source_id, daimon_type, table_qualifier, priority) VALUES (7, 2, 2, 'results', 2);
+INSERT INTO ohdsi.source_daimon( source_daimon_id, source_id, daimon_type, table_qualifier, priority) VALUES (7, 2, 2, 'dad_results', 2);
 
 -- EVIDENCE daimon
 INSERT INTO ohdsi.source_daimon( source_daimon_id, source_id, daimon_type, table_qualifier, priority) VALUES (8, 2, 3, 'temp', 2);
