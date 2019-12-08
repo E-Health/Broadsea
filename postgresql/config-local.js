@@ -4,10 +4,13 @@ define([], function () {
 	// clearing local storage otherwise source cache will obscure the override settings
 	localStorage.clear();
 
+	var getUrl = window.location;
+	var baseUrl = getUrl.protocol + "//" + getUrl.host;
+	
 	// WebAPI
 	configLocal.api = {
 		name: 'OHDSI',
-		url: 'http://192.168.0.248:8080/WebAPI/'
+		url: baseUrl + '/WebAPI/'
 	};
 
 	configLocal.cohortComparisonResultsEnabled = false;
