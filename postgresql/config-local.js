@@ -7,7 +7,7 @@ define([], function () {
 	// WebAPI
 	configLocal.api = {
 		name: 'OHDSI',
-		url: 'http://tomcat.nuchange.ca/WebAPI/'
+		url: 'http://192.168.0.248:8080/WebAPI/'
 	};
 
 	configLocal.cohortComparisonResultsEnabled = false;
